@@ -108,7 +108,7 @@ class _BetterPlayerMaterialControlsState
               child: _buildTopBar(),
             ),
             Positioned(bottom: 0, left: 0, right: 0, child: Padding(
-              padding: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+              padding: const EdgeInsets.only(bottom: 25.0, left: 15.0, right: 15.0),
               child: _buildBottomBar(),
             )),
             _buildNextVideoWidget(),
