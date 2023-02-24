@@ -12,6 +12,7 @@ import 'package:better_player/src/video_player/video_player.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+
 class BetterPlayerMaterialControls extends StatefulWidget {
   ///Callback used to send information if player bar is hidden or not
   final Function(bool visbility) onControlsVisibilityChanged;
@@ -106,7 +107,10 @@ class _BetterPlayerMaterialControlsState
               right: 0,
               child: _buildTopBar(),
             ),
-            Positioned(bottom: 0, left: 0, right: 0, child: _buildBottomBar()),
+            Positioned(bottom: 0, left: 0, right: 0, child: Padding(
+              padding: const EdgeInsets.only(bottom: 10.0, left: 10.0, right: 10.0),
+              child: _buildBottomBar(),
+            )),
             _buildNextVideoWidget(),
           ],
         ),
@@ -401,9 +405,8 @@ class _BetterPlayerMaterialControlsState
       {Widget? icon, required void Function() onClicked}) {
     return Container(
       constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
-      child: BetterPlayerMaterialDoubleClickableWidget(
-        onTap: () {},
-        onDoubleTap: onClicked,
+      child: BetterPlayerMaterialClickableWidget(
+        onTap: onClicked,
         child: Align(
           child: Container(
             decoration: BoxDecoration(
@@ -426,9 +429,8 @@ class _BetterPlayerMaterialControlsState
       {Widget? icon, required void Function() onClicked}) {
     return Container(
       constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
-      child: BetterPlayerMaterialDoubleClickableWidget(
-        onTap: () {},
-        onDoubleTap: onClicked,
+      child: BetterPlayerMaterialClickableWidget(
+        onTap: onClicked,
         child: Align(
           child: Container(
             decoration: BoxDecoration(
