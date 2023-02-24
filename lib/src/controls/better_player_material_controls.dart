@@ -401,8 +401,34 @@ class _BetterPlayerMaterialControlsState
       {Widget? icon, required void Function() onClicked}) {
     return Container(
       constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
-      child: BetterPlayerMaterialClickableWidget(
-        onTap: onClicked,
+      child: BetterPlayerMaterialDoubleClickableWidget(
+        onTap: () {},
+        onDoubleTap: onClicked,
+        child: Align(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(48),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Stack(
+                children: [icon!],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDoubleHitAreaClickableButton(
+      {Widget? icon, required void Function() onClicked}) {
+    return Container(
+      constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
+      child: BetterPlayerMaterialDoubleClickableWidget(
+        onTap: () {},
+        onDoubleTap: onClicked,
         child: Align(
           child: Container(
             decoration: BoxDecoration(
@@ -422,10 +448,10 @@ class _BetterPlayerMaterialControlsState
   }
 
   Widget _buildSkipButton() {
-    return _buildHitAreaClickableButton(
+    return _buildDoubleHitAreaClickableButton(
       icon: Icon(
         _controlsConfiguration.skipBackIcon,
-        size: 24,
+        size: 32,
         color: _controlsConfiguration.iconsColor,
       ),
       onClicked: skipBack,
@@ -433,10 +459,10 @@ class _BetterPlayerMaterialControlsState
   }
 
   Widget _buildForwardButton() {
-    return _buildHitAreaClickableButton(
+    return _buildDoubleHitAreaClickableButton(
       icon: Icon(
         _controlsConfiguration.skipForwardIcon,
-        size: 24,
+        size: 32,
         color: _controlsConfiguration.iconsColor,
       ),
       onClicked: skipForward,
@@ -449,14 +475,14 @@ class _BetterPlayerMaterialControlsState
       icon: isFinished
           ? Icon(
               Icons.replay,
-              size: 42,
+              size: 46,
               color: _controlsConfiguration.iconsColor,
             )
           : Icon(
               controller.value.isPlaying
                   ? _controlsConfiguration.pauseIcon
                   : _controlsConfiguration.playIcon,
-              size: 42,
+              size: 46,
               color: _controlsConfiguration.iconsColor,
             ),
       onClicked: () {
@@ -580,7 +606,7 @@ class _BetterPlayerMaterialControlsState
         text: TextSpan(
             text: BetterPlayerUtils.formatDuration(position),
             style: TextStyle(
-              fontSize: 10.0,
+              fontSize: 14.0,
               color: _controlsConfiguration.textColor,
               decoration: TextDecoration.none,
             ),
@@ -588,7 +614,7 @@ class _BetterPlayerMaterialControlsState
               TextSpan(
                 text: ' / ${BetterPlayerUtils.formatDuration(duration)}',
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 14.0,
                   color: _controlsConfiguration.textColor,
                   decoration: TextDecoration.none,
                 ),
