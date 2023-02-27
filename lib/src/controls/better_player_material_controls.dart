@@ -12,6 +12,7 @@ import 'package:better_player/src/video_player/video_player.dart';
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+
 class BetterPlayerMaterialControls extends StatefulWidget {
   ///Callback used to send information if player bar is hidden or not
   final Function(bool visbility) onControlsVisibilityChanged;
@@ -106,15 +107,10 @@ class _BetterPlayerMaterialControlsState
               right: 0,
               child: _buildTopBar(),
             ),
-            Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: 20.0, left: 15.0, right: 15.0),
-                  child: _buildBottomBar(),
-                )),
+            Positioned(bottom: 0, left: 0, right: 0, child: Padding(
+              padding: const EdgeInsets.only(bottom: 20.0, left: 15.0, right: 15.0),
+              child: _buildBottomBar(),
+            )),
             _buildNextVideoWidget(),
           ],
         ),
@@ -239,19 +235,31 @@ class _BetterPlayerMaterialControlsState
 
   Widget _buildPipButtonWrapperWidget(
       bool hideStuff, void Function() onPlayerHide) {
-    return AnimatedOpacity(
-      opacity: hideStuff ? 0.0 : 1.0,
-      duration: betterPlayerControlsConfiguration.controlsHideTime,
-      onEnd: onPlayerHide,
-      child: Container(
-        height: betterPlayerControlsConfiguration.controlBarHeight,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            _buildPipButton(),
-          ],
-        ),
-      ),
+    return FutureBuilder<bool>(
+      future: betterPlayerController!.isPictureInPictureSupported(),
+      builder: (context, snapshot) {
+        final bool isPipSupported = snapshot.data ?? false;
+        if (isPipSupported &&
+            _betterPlayerController!.betterPlayerGlobalKey != null) {
+              print("PIP ACTUALLY WORKING");
+          return AnimatedOpacity(
+            opacity: hideStuff ? 0.0 : 1.0,
+            duration: betterPlayerControlsConfiguration.controlsHideTime,
+            onEnd: onPlayerHide,
+            child: Container(
+              height: betterPlayerControlsConfiguration.controlBarHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  _buildPipButton(),
+                ],
+              ),
+            ),
+          );
+        } else {
+          return const SizedBox();
+        }
+      },
     );
   }
 
