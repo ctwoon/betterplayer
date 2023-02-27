@@ -241,6 +241,7 @@ class _BetterPlayerMaterialControlsState
         final bool isPipSupported = snapshot.data ?? false;
         if (isPipSupported &&
             _betterPlayerController!.betterPlayerGlobalKey != null) {
+              print("PIP ACTUALLY WORKING");
           return AnimatedOpacity(
             opacity: hideStuff ? 0.0 : 1.0,
             duration: betterPlayerControlsConfiguration.controlsHideTime,
