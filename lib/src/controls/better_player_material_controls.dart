@@ -454,7 +454,7 @@ class _BetterPlayerMaterialControlsState
     return _buildDoubleHitAreaClickableButton(
       icon: Icon(
         _controlsConfiguration.skipBackIcon,
-        size: 32,
+        size: 30,
         color: _controlsConfiguration.iconsColor,
       ),
       onClicked: skipBack,
@@ -465,7 +465,7 @@ class _BetterPlayerMaterialControlsState
     return _buildDoubleHitAreaClickableButton(
       icon: Icon(
         _controlsConfiguration.skipForwardIcon,
-        size: 32,
+        size: 30,
         color: _controlsConfiguration.iconsColor,
       ),
       onClicked: skipForward,
