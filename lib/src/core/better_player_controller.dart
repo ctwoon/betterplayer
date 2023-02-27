@@ -1122,8 +1122,7 @@ class BetterPlayerController {
       throw StateError("The data source has not been initialized");
     }
 
-    final bool isPipSupported =
-        (await videoPlayerController!.isPictureInPictureSupported()) ?? false;
+    final bool isPipSupported = true;
 
     return isPipSupported && !_isFullScreen;
   }
