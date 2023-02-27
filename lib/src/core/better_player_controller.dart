@@ -1124,7 +1124,7 @@ class BetterPlayerController {
 
     final bool isPipSupported = true;
 
-    return isPipSupported && !_isFullScreen;
+    return isPipSupported && _isFullScreen;
   }
 
   ///Handle VideoEvent when remote controls notification / PiP is shown
