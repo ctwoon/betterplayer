@@ -291,7 +291,6 @@ class _BetterPlayerMaterialControlsState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text("Nightcrawler", style: TextStyle(fontSize: 25)),
             Expanded(
               flex: 75,
               child: Row(
