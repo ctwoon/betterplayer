@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:math';
 import 'package:better_player/better_player.dart';
 import 'package:better_player/src/configuration/better_player_controller_event.dart';
-import 'package:better_player/src/controls/better_player_cupertino_controls.dart';
 import 'package:better_player/src/controls/better_player_material_controls.dart';
 import 'package:better_player/src/core/better_player_utils.dart';
 import 'package:better_player/src/subtitles/better_player_subtitles_drawer.dart';
@@ -165,11 +163,7 @@ class _BetterPlayerWithControlsState extends State<BetterPlayerWithControls> {
     if (controlsConfiguration.showControls) {
       BetterPlayerTheme? playerTheme = controlsConfiguration.playerTheme;
       if (playerTheme == null) {
-        if (Platform.isAndroid) {
           playerTheme = BetterPlayerTheme.material;
-        } else {
-          playerTheme = BetterPlayerTheme.cupertino;
-        }
       }
 
       if (controlsConfiguration.customControlsBuilder != null &&
@@ -178,8 +172,6 @@ class _BetterPlayerWithControlsState extends State<BetterPlayerWithControls> {
             betterPlayerController, onControlsVisibilityChanged);
       } else if (playerTheme == BetterPlayerTheme.material) {
         return _buildMaterialControl();
-      } else if (playerTheme == BetterPlayerTheme.cupertino) {
-        return _buildCupertinoControl();
       }
     }
 
@@ -188,13 +180,6 @@ class _BetterPlayerWithControlsState extends State<BetterPlayerWithControls> {
 
   Widget _buildMaterialControl() {
     return BetterPlayerMaterialControls(
-      onControlsVisibilityChanged: onControlsVisibilityChanged,
-      controlsConfiguration: controlsConfiguration,
-    );
-  }
-
-  Widget _buildCupertinoControl() {
-    return BetterPlayerCupertinoControls(
       onControlsVisibilityChanged: onControlsVisibilityChanged,
       controlsConfiguration: controlsConfiguration,
     );
